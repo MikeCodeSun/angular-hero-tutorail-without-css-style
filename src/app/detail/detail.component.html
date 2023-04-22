@@ -1,0 +1,7 @@
+<div *ngIf="hero">
+  <h5>hero</h5>
+  <p>name: {{ hero.name }}</p>
+  <p>id : {{ hero.id }}</p>
+  <input type="text" [(ngModel)]="hero.name" />
+  <button (click)="updateHero()">update</button>
+</div>

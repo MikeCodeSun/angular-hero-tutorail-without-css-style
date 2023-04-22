@@ -1,0 +1,14 @@
+<div *ngIf="heroes?.length">
+  <ul>
+    <li *ngFor="let hero of heroes">
+      <a routerLink="/hero/{{ hero.id }}">{{ hero.name }}</a>
+      <button (click)="delete(hero.id)">delete</button>
+    </li>
+  </ul>
+</div>
+
+<div>
+  <h1>add new hero</h1>
+  <input type="text" #nh />
+  <button (click)="add(nh.value); nh.value = ''">add</button>
+</div>
