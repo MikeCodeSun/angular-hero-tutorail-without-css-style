@@ -1,0 +1,56 @@
+<div>
+  {{ model | json }}
+  <form #hf="ngForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name">name:</label>
+      <input
+        name="name"
+        type="text"
+        id="name"
+        required
+        [(ngModel)]="model.name"
+        #name="ngModel"
+      />
+      <div [hidden]="name.valid || name.pristine" class="alert">
+        this field required!
+      </div>
+    </div>
+    <div>
+      <label for="ego">alter ego:</label>
+      <input
+        name="ego"
+        type="text"
+        id="ego"
+        [(ngModel)]="model.ego"
+        #ego="ngModel"
+        required
+      />
+      <div [hidden]="ego.valid || ego.pristine" class="alert">
+        this field required!
+      </div>
+    </div>
+    <div>
+      <label name="power" for="power">super power: </label>
+      <select
+        name="power"
+        id="power"
+        [(ngModel)]="model.power"
+        #power="ngModel"
+        required
+      >
+        <option *ngFor="let p of powers" [value]="p">{{ p }}</option>
+      </select>
+      <div [hidden]="power.valid || power.pristine" class="alert">
+        this field required!
+      </div>
+    </div>
+    <button type="submit" [disabled]="!hf.form.valid">submit</button>
+  </form>
+</div>
+<button (click)="newHero(); hf.reset()">new hero</button>
+<div [hidden]="!submited">
+  <p>name: {{ model.name }}</p>
+  <p>ego: {{ model.ego }}</p>
+  <p>power: {{ model.power }}</p>
+  <button (click)="submited = false">edit</button>
+</div>
